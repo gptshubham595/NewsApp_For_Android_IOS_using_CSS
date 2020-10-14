@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My App</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">      
+        <link href="css/ratchet.min.css" rel="stylesheet">
+        <link href="css/ratchet-theme-ios.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        <header class="bar bar-nav">
+            <h1 class="title">Discover</h1>
+        </header>
+        <div class="content">
+
+            <ul class="table-view" id="list">
+                <li class="table-view-cell table-view-divider">Recommended news</li>
+
+                
+            </ul>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="js/ratchet.min.js"></script>
+        <script src="js/titleid.js"></script>
+        <script>
+
+
+            window.onload=function(){
+                if(!window.location.hash) {
+                    window.location = window.location + '#loaded';
+                }
+
+                var list=document.getElementById("list");
+                    var len=news.length;
+                     for(var i=0;i<len;i++){
+                    list.insertAdjacentHTML("beforeEnd",
+                                            "<li class=\"table-view-cell media\"><a class=\"navigate-right\" href=\"#\" ><img class=\"media-object pull-left\" src="+news[i]["id"]+" alt=\"Lorem\" height=\"64\" width=\"64\"><div class=\"media-body\">"+news[i]["title"]+"<p>"+news[i]["shortdesc"]+"</p></div></a></li>");
+
+                }
+                
+               
+
+                $(".navigate-right").click(function() {
+                    var picID = $(this).find('img').attr('src');
+                    var picTitle = $(this).find('div').html().split("<")[0].trim();
+                    
+//                    alert(picID+picTitle+$(this).index('.navigate-right'));
+                    var url = 'news.html?index=' +$(this).index('.navigate-right');
+
+                    document.location.href = url;
+                });
+            };
+
+        </script>
+    </body>
+</html>

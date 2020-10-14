@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Swiper demo</title>
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="https://swiperjs.com/package/swiper-bundle.min.css">
+
+
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link href="css/ratchet.min.css" rel="stylesheet">
+        <link href="css/ratchet-theme-ios.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    </head>
+    <body>
+        <header class="bar bar-nav">
+            <a href="#" id="discover">
+                <button class="btn btn-link btn-nav pull-left">
+                    <span class="icon icon-left-nav" style="font-size: 1.1em"></span>
+                    <span style="font-size: 0.6em">Discover</span>
+                </button>
+            </a>
+            <h1 class="title">My Feed</h1>
+        </header>
+        <!-- Swiper -->
+        <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
+            <div class="swiper-wrapper" aria-live="polite" id="list">
+                
+            </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+        <!-- Swiper JS -->
+        <script src="https://swiperjs.com/package/swiper-bundle.min.js"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+          
+        </script>
+
+        <footer>
+            <div class="bar bar-standard bar-footer"> 
+                <nav class="bar bar-tab">
+                    <a class="tab-item active " href="#">
+                        <div id="container" class="shadow p-3 mb-5 bg-white rounded">
+                            <span class="fas fa-circle" id="relevanceColor" style="font-size:1.2em"></span>
+                        </div>
+
+                        <span class="tab-label">Relevance</span>
+
+                    </a>
+
+                    <a class="tab-item" href="whatsapp://send?text=News Headlines!" data-action="share/whatsapp/share">
+                        <div id="container">
+                            <span class="fas fa-share-alt" style="font-size:1.2em"></span>
+                        </div>
+                        <span class="tab-label">Share</span>
+
+                    </a>
+                    <a class="tab-item" href="javascript:go();" id="bookmark">
+                        <div id="container" >
+                            <span class="fas fa-bookmark"  style="font-size:1.2em"></span>
+                        </div>
+                        <span class="tab-label" id="bookmarkText">Bookmark</span>
+                    </a>
+
+                </nav>
+
+            </div>
+        </footer>
+        <script>
+            var url,data,params,tmp;
+            window.onload = function () {
+                url = document.location.href,
+                    params = url.split('?')[1].split('&'),
+                    data = {}, tmp;
+                for (var i = 0, l = params.length; i < l; i++) {
+                    tmp = params[i].split('=');
+                    data[tmp[0]] = tmp[1];
+                }
+                document.getElementById('discover').onclick=function(){
+                    document.location.href="index.html";
+                };
+
+                var activeIndex=data.index;
+               
+                var list=document.getElementById("list");
+                    var len=news.length;
+                     for(var i=0;i<len;i++){
+                    list.insertAdjacentHTML("beforeEnd",
+                                            "<div class=\"swiper-slide\" role=\"group\" aria-label=\""+i+1+" / "+len+"\" style=\"width: 100%;\"><ul class=\"table-view\" ><li class=\"table-view-cell\" ><img class=\"img-responsive\" src="+news[i]["id"]+" alt=\"newsImage\" id=\"picID\" style=\"position: relative;margin-left: -1em;width: 135%;height: 45%;display: block;\"> </li><li class=\"table-view-cell\" style=\"position: relative; width: 115%;\"><span style=\"color: #333333;text-justify: auto; font-size: 6vw; font-style: normal;  \" id=\"picTitle\">"+news[i]["title"]+"</span></li><li class=\"table-view-cell\" style=\"position: relative; width: 110%; margin-top: -1em;\" ><span style=\"text-justify: auto; color: gray; font-size: 4vw;\" id=\"picDesc\"> "+news[i]["desc"]+" </span></li><li class=\"table-view-cell\" style=\" position: relative; width: 115%;  margin-top: -1em;\"><span style=\"text-justify: auto; color: lightgray; font-size: 2.5vw;\" id=\"picShot\">"+news[i]["shot"]+"</span></li></ul></div>");
+
+                }
+                
+                            var swiper = new Swiper('.swiper-container',{
+                    initialSlide: activeIndex
+                    });
+                
+//                document.getElementById('picID').src = news[activeIndex]["id"];
+//                document.getElementById('picTitle').innerHTML = news[activeIndex]["title"];
+//                document.getElementById('picDesc').innerHTML = news[activeIndex]["desc"];
+//                document.getElementById('picShot').innerHTML = news[activeIndex]["shot"];
+            };
+
+
+        </script>
+        <script src="js/titleid.js"></script>
+        <script src="js/myscript.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+        </script>
+        <script src="js/ratchet.min.js"></script>
+
+    </body>
+</html>
