@@ -14,7 +14,7 @@
   with Body>Raw as {"id":"NUMBER","title":"Give your title","description":"Give your Description",} 
 
 ## SEARCH
-### GET: /articles/search/<query> 
+### GET: /articles/search/{query}
   It will List every where found
   
 ## DELETE AN ARTICLE
