@@ -20,7 +20,7 @@
             <ul class="table-view" id="list">
                 <li class="table-view-cell table-view-divider">Recommended news</li>
 
-                
+
             </ul>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
@@ -37,20 +37,20 @@
                 }
 
                 var list=document.getElementById("list");
-                    var len=news.length;
-                     for(var i=0;i<len;i++){
+                var len=news.length;
+                for(var i=0;i<len;i++){
                     list.insertAdjacentHTML("beforeEnd",
                                             "<li class=\"table-view-cell media\"><a class=\"navigate-right\" href=\"#\" ><img class=\"media-object pull-left\" src="+news[i]["id"]+" alt=\"Lorem\" height=\"64\" width=\"64\"><div class=\"media-body\">"+news[i]["title"]+"<p>"+news[i]["shortdesc"]+"</p></div></a></li>");
 
                 }
-                
-               
+
+
 
                 $(".navigate-right").click(function() {
                     var picID = $(this).find('img').attr('src');
                     var picTitle = $(this).find('div').html().split("<")[0].trim();
-                    
-//                    alert(picID+picTitle+$(this).index('.navigate-right'));
+
+                    //                    alert(picID+picTitle+$(this).index('.navigate-right'));
                     var url = 'news.html?index=' +$(this).index('.navigate-right');
 
                     document.location.href = url;

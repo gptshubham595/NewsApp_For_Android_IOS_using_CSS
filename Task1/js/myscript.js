@@ -8,7 +8,8 @@ function go() {
         a.style.color = "lightgreen";
     }
     else {
-        a.style.color = "gray";
+        a.style.color = "#3498DB";
     }
 };
+
 

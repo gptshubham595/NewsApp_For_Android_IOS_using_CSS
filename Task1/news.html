@@ -1,8 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Swiper demo</title>
-        <!-- Link Swiper's CSS -->
+        <title>Discover News</title>
         <link rel="stylesheet" href="https://swiperjs.com/package/swiper-bundle.min.css">
 
 
@@ -31,7 +30,7 @@
         <!-- Swiper -->
         <div class="swiper-container swiper-container-initialized swiper-container-horizontal">
             <div class="swiper-wrapper" aria-live="polite" id="list">
-                
+
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
 
@@ -40,7 +39,7 @@
 
         <!-- Initialize Swiper -->
         <script>
-          
+
         </script>
 
         <footer>
@@ -55,18 +54,23 @@
 
                     </a>
 
-                    <a class="tab-item" href="whatsapp://send?text=News Headlines!" data-action="share/whatsapp/share">
+                    <a class="tab-item" href="javascript:share()" data-action="share/whatsapp/share">
                         <div id="container">
-                            <span class="fas fa-share-alt" style="font-size:1.2em"></span>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-share" fill="#3498DB " style="font-size: 1.2em"xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                            </svg>
                         </div>
-                        <span class="tab-label">Share</span>
+                        <span class="tab-label" style="color: #3498DB ">Share</span>
 
                     </a>
                     <a class="tab-item" href="javascript:go();" id="bookmark">
                         <div id="container" >
-                            <span class="fas fa-bookmark"  style="font-size:1.2em"></span>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bookmark" fill="#3498DB"
+                                 style="font-size: 1.2em"xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
                         </div>
-                        <span class="tab-label" id="bookmarkText">Bookmark</span>
+                        <span class="tab-label" id="bookmarkText" style="color: #3498DB ">Bookmark</span>
                     </a>
 
                 </nav>
@@ -75,6 +79,7 @@
         </footer>
         <script>
             var url,data,params,tmp;
+            var swiper;
             window.onload = function () {
                 url = document.location.href,
                     params = url.split('?')[1].split('&'),
@@ -88,28 +93,36 @@
                 };
 
                 var activeIndex=data.index;
-               
+
                 var list=document.getElementById("list");
-                    var len=news.length;
-                     for(var i=0;i<len;i++){
+                var len=news.length;
+                for(var i=0;i<len;i++){
                     list.insertAdjacentHTML("beforeEnd",
                                             "<div class=\"swiper-slide\" role=\"group\" aria-label=\""+i+1+" / "+len+"\" style=\"width: 100%;\"><ul class=\"table-view\" ><li class=\"table-view-cell\" ><img class=\"img-responsive\" src="+news[i]["id"]+" alt=\"newsImage\" id=\"picID\" style=\"position: relative;margin-left: -1em;width: 135%;height: 45%;display: block;\"> </li><li class=\"table-view-cell\" style=\"position: relative; width: 115%;\"><span style=\"color: #333333;text-justify: auto; font-size: 6vw; font-style: normal;  \" id=\"picTitle\">"+news[i]["title"]+"</span></li><li class=\"table-view-cell\" style=\"position: relative; width: 110%; margin-top: -1em;\" ><span style=\"text-justify: auto; color: gray; font-size: 4vw;\" id=\"picDesc\"> "+news[i]["desc"]+" </span></li><li class=\"table-view-cell\" style=\" position: relative; width: 115%;  margin-top: -1em;\"><span style=\"text-justify: auto; color: lightgray; font-size: 2.5vw;\" id=\"picShot\">"+news[i]["shot"]+"</span></li></ul></div>");
 
                 }
-                
-                            var swiper = new Swiper('.swiper-container',{
+
+                swiper = new Swiper('.swiper-container',{
                     initialSlide: activeIndex
-                    });
-                
-//                document.getElementById('picID').src = news[activeIndex]["id"];
-//                document.getElementById('picTitle').innerHTML = news[activeIndex]["title"];
-//                document.getElementById('picDesc').innerHTML = news[activeIndex]["desc"];
-//                document.getElementById('picShot').innerHTML = news[activeIndex]["shot"];
+                });
+
+                //                document.getElementById('picID').src = news[activeIndex]["id"];
+                //                document.getElementById('picTitle').innerHTML = news[activeIndex]["title"];
+                //                document.getElementById('picDesc').innerHTML = news[activeIndex]["desc"];
+                //                document.getElementById('picShot').innerHTML = news[activeIndex]["shot"];
             };
 
 
         </script>
+        <script>
+        function share(){
+                var text=(news[swiper.realIndex]["id"])+news[swiper.realIndex]["title"]+"\n"+news[swiper.realIndex]["shortdesc"];
+                document.location.href= "whatsapp://send?text="+text;
+            
+            }
+        </script>
         <script src="js/titleid.js"></script>
+        <script src="js/whatsapp.js"></script>
         <script src="js/myscript.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
         </script>
