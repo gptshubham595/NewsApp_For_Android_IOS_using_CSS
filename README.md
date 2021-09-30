@@ -1,4 +1,4 @@
-# TaskAppointy
+# NewsApp_For_Android_IOS_using_CSS
 ## task1
  Just open ````index.html```` file
 
