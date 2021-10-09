@@ -1,4 +1,4 @@
-# NewsApp For Android & IOS using WebTools
+# NewsApplication For Android & IOS using WebTools
 
 ## Folder 1 contains
  - News App that can show news to mobile devices like android & IOS using HTML, CSS, JQ, JAVASCRIPT
